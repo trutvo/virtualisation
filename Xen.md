@@ -1,4 +1,6 @@
-# virtualisation
+# Xen Server
+
+XenServer is a free, open-source virtualization platform based on the Xen hypervisor. It allows you to create and manage virtual machines (VMs) on a physical server. XenServer is widely used in enterprise environments for server virtualization, cloud computing, and data center management.
 
 ## Setup a XenServer
 
@@ -11,8 +13,6 @@ Install it on a PC.
 You can login via ssh:
 
     ssh root@<IP>
-
-
 
 ### Setup a Image Repository
 
