@@ -18,7 +18,7 @@ Checkout the MIrage skeleton project
 
     git clone https://github.com/mirage/mirage-skeleton.git
 
-Build one example
+Build hello example
 
     cd mirage-skeleton/tutorial/hello
     mirage configure -t xen
@@ -37,3 +37,28 @@ Login to the Xen hypervisor
 Run the unikernel
 
     xl create hello.xl -c
+
+## Build and run minipaf webserver
+
+Build minipaf app
+
+    cd mirage-skeleton/applications/http
+    mirage configure -t xen --net=direct --dhcp=true
+    make
+
+Copy `.xen` and `.xl` files to the hypervisor.
+
+Login to the Xen hypervisor
+
+    ssh root@<IP>
+
+Check and fix the network configuration in `minipaf.xl`
+
+    # if your system uses openvswitch then either edit /etc/xen/xl.conf and set
+    #     vif.default.script="vif-openvswitch"
+    # or add "script=vif-openvswitch," before the "bridge=" below:
+    vif = [ 'bridge=xenbr0' ]
+
+Run the unikernel
+
+    xl create minipaf.xl -c
